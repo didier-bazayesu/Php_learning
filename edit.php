@@ -26,7 +26,7 @@ if (isset($_GET["id"])) {
     $sql = "SELECT * FROM students WHERE id = $id";
     $result = mysqli_query($connection, $sql);
 
-    if ($result && mysqli_num_rows($result) > 0) {
+    if ($result && mysqli_num_rows($result) > 0) {//
         $row = mysqli_fetch_assoc($result);
         $first_name = $row["first_name"];
         $last_name = $row["last_name"];
@@ -158,7 +158,7 @@ if (isset($_POST["submit"])) {
         <h2 style="text-align:center;">Edit Student</h2>
 
         <label for="first_name">First Name:</label>
-        <input type="text" name="first_name" value="<?= htmlspecialchars($first_name) ?>" required>
+        <input type="text" name="first_name" value="<?php echo $row["first_name"] ?>" required>
 
         <label for="last_name">Last Name:</label>
         <input type="text" name="last_name" value="<?= htmlspecialchars($last_name) ?>" required>

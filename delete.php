@@ -5,7 +5,7 @@ $username = "root";
 $password = "";
 $database = "student_managment";
 //create connection with database 
-$conn   = new mysqli($server_name, $username, $password, $database);
+$conn   = mysqli_connect($server_name, $username, $password, $database);
 
 //check connection 
 
@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 $sql = "Delete FROM students where id= '$id'";
-$result = $conn->query($sql);
+$result = mysqli_query($conn,$sql);
 
 if($result){
     header("Location: index.php");

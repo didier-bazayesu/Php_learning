@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <style>
         /* General body styling */
         body {
@@ -37,7 +36,7 @@
 
         /* Inputs and select */
         form input[type="text"],
-        form input[type="email"],
+        form input[type="number"],
         form select {
             width: 100%;
             padding: 10px 12px;
@@ -49,7 +48,7 @@
         }
 
         form input[type="text"]:focus,
-        form input[type="email"]:focus,
+        form input[type="number"]:focus,
         form select:focus {
             border-color: #007bff;
             outline: none;
@@ -90,78 +89,34 @@
     </style>
 </head>
 
-
-
-<?php
-
-//$server_name = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "student_managment";
-
-//$conn = mysqli_connect($server_name, $username, $password, $database);
-
-include("connection.php");
-
-if (isset($_POST['submit'])) {
-
-
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $email = $_POST['email'];
-    $reg_number = $_POST['reg_number'];
-    $enroll_course = $_POST['enroll_course'];
-
-
-    $query = "INSERT INTO students (first_name, last_name, email, reg_number, enroll_course)
-              VALUES ('$first_name', '$last_name', '$email', '$reg_number', '$enroll_course')";
-
-    $result = mysqli_query($connn, $query);
-    if (!$result) {
-        die("there is the proble in inserting");
-    } else {
-        header("Location:index.php");
-        exit();
-        die("data inserted successfully");
-    }
-}
-
-
-// header("http://localhost/php%20activities/video%20tutrial/studentManagment/index.php")
-?>
-
-
-
-
 <body>
 
 
 
-
     <form action="" method="post">
-
-
-
-
         <label for="first_name">First Name:</label>
         <input type="text" name="first_name" placeholder="Please enter first name" required>
 
         <label for="last_name">Last Name:</label>
         <input type="text" name="last_name" placeholder="Please enter last name" required>
 
-        <label for="email">email:</label>
-        <input type="email" name="email" placeholder="Your Email" required>
+        <label for="gender">Gender:</label>
+        <input type="text" name="gender" placeholder="Your gender" required>
 
+        <label for="province">Province:</label>
+        <select name="province" id="province" required>
+            <option value="">--Select Province--</option>
+            <option value="Eastern">Eastern</option>
+            <option value="Northern">Northern</option>
+            <option value="Southern">Southern</option>
+            <option value="Western">Western</option>
+            <option value="Kigali">Kigali</option>
+        </select>
 
-        <label for="reg_number">Reg_number:</label>
-        <input type="text" id="reg_number" name="reg_number" placeholder="Enter reg_number" required>
-
-        <label for="enroll_course">Enroll_course</label>
-        <input type="text" id="enroll_course" name="enroll_course" required placeholder="Course_required">
+        <label for="phone_number">Phone Number:</label>
+        <input type="number" id="phone_number" name="phone_number" placeholder="Enter phone number" required>
 
         <input type="submit" name="submit" value="Submit">
-        <input name="select">
-        <a href="index.php" role="button"> Back</a>
     </form>
 
 </body>
