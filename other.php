@@ -79,7 +79,22 @@
 
     <?php
 
-   
+    if (isset($_POST['submit'])) {
+        $student_id = $_POST['student_id'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $phone = $_POST['phone'];
+        $connect = mysqli_connect('localhost', 'root', "", 'cat');
+        $querry = "insert into cat_information values('$student_id','$first_name', '$last_name','$phone')";
+        $success = mysqli_query($connect, $querry);
+        if ($success) {
+            echo "success";
+        } else {
+            echo "fails";
+        }
+    } else {
+        echo "fail";
+    }
 
 
 
