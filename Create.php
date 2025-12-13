@@ -99,9 +99,9 @@
 // $password = "";
 // $database = "student_managment";
 
-//$conn = mysqli_connect($server_name, $username, $password, $database);
+$conn = mysqli_connect($server_name, $username, $password, $database);
 
-include("connection.php");
+// include("connection.php");
 
 if (isset($_POST['submit'])) {
 
