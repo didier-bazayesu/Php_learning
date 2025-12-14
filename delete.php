@@ -1,31 +1,16 @@
 <?php
-
-$server_name = "localhost";
-$username = "root";
-$password = "";
-$database = "student_managment";
-//create connection with database 
-$conn   = new mysqli($server_name, $username, $password, $database);
-
-//check connection 
-
-if ($conn->connect_error) {
-    die("connection failed " . $conn->connect_error);
-}
-
-
-// read the data from database ;
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-$sql = "Delete FROM students where id= '$id'";
-$result = $conn->query($sql);
-
-if($result){
-    header("Location: index.php");
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
     exit();
-}else{
-        echo "❌ Error deleting record: " . $conn->error;
-}
 }
 
-?>
+$conn = mysqli_connect("localhost", "root", "", "student_managment");
+if (!$conn) die("Connection failed: " . mysqli_connect_error());
+
+if (!isset($_GET['id'])) die("No ID provided");
+
+$id = (int)$_GET['id'];
+$conn->query("DELETE FROM students WHERE id=$id");
+header("Location: index.php");
+exit();
